@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import TopNavigation from '@cloudscape-design/components/top-navigation';
 import AppLayout from '@cloudscape-design/components/app-layout';
 import Navigation from './component/navigation';
@@ -8,7 +8,7 @@ import './App.css';
 import { Container, ContentLayout, Header } from '@cloudscape-design/components';
 import PrepareDashboardContent from './component/prepared-dashboard-content';
 
-export default function App() {
+const Home = () => {
   return (
     <>
       <div id="top-nav">
@@ -116,5 +116,7 @@ export default function App() {
       />
       
     </>
-  );
+  )
 }
+
+export default Home
