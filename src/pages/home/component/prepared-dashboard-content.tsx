@@ -4,7 +4,7 @@ import Grid from "@cloudscape-design/components/grid";
 import ProductionOverview from "./production-overview";
 import Flavors from "./flavors";
 import QualityReport from "./quality-report/index"
-import { breakdownItems, notes, productionMetrics, quote, variationData } from "../../../data";
+import { breakdownItems, notes, productionMetrics, quote, variationData } from "../data";
 
 export default function PrepareDashboardContent(){
     return (
