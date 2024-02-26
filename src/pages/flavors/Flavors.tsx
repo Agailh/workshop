@@ -9,7 +9,7 @@ import ShellLayout from '../../layout/shell';
 import VariationsTable from './components/flavors-table';
 
 import { variationsData } from './data';
-
+import '@cloudscape-design/global-styles/index.css'
 export default function Flavors() {
   return (
     <ShellLayout

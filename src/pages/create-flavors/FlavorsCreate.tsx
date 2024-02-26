@@ -7,8 +7,9 @@ import HelpPanel from '@cloudscape-design/components/help-panel';
 import Breadcrumbs from '../../components/breadcrumbs';
 import Navigation from '../../components/navigation';
 import ShellLayout from '../../layout/shell';
-import { ContentLayout } from '@cloudscape-design/components';
-
+import { Button, ContentLayout, SpaceBetween } from '@cloudscape-design/components';
+import Form from '@cloudscape-design/components/form';
+import '@cloudscape-design/global-styles/index.css'
 export default function FlavorsCreate() {
   return (
     <ShellLayout
@@ -27,7 +28,20 @@ export default function FlavorsCreate() {
           </Header>
         }
       >
-        This text will be replaced with the Form we add as part of the workshop.
+        <form onSubmit={event => event.preventDefault()}>
+            <Form
+            actions={
+                <SpaceBetween direction ="horizontal" size='xs'>
+                    <Button href='/flavors' variant='link'>
+                        Cancel
+                    </Button>
+                    <Button formAction='submit' variant='primary'>
+                        Create Flavors
+                    </Button>
+                </SpaceBetween>
+            }
+        ></Form>
+        </form>
       </ContentLayout>
     </ShellLayout>
   );

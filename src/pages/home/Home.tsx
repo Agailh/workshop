@@ -14,6 +14,7 @@ import Shell from '../../layout/shell';
 import ProductionOverview from './component/production-overview';
 import Flavors from './component/flavors';
 import QualityReport from './component/quality-report';
+import '@cloudscape-design/global-styles/index.css'
 
 import { variationData, breakdownItems, productionMetrics, quote, notes } from './data';
 

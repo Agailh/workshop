@@ -5,13 +5,13 @@ import Flavors from './pages/flavors/Flavors';
 import FlavorsCreate from './pages/create-flavors/FlavorsCreate';
 
 
-//import '@cloudscape-design/global-styles/dist/index.css'
+import '@cloudscape-design/global-styles/index.css'
+import  './App.css';
 
 export default function App() {
   return (
     <Router>
       <>
-      
         <Routes>
           <Route path="/dashboard" element={<Home />} />
           <Route path="/flavors" element={<Flavors  />} />
