@@ -5,11 +5,12 @@ import Header  from '@cloudscape-design/components/header';
 import { Flavor } from '../data';
 import  Table,{ TableProps } from '@cloudscape-design/components/table';
 import { useCollection } from '@cloudscape-design/collection-hooks';
-import {  CollectionPreferencesProps} from '@cloudscape-design/components';
+import {  CollectionPreferences, CollectionPreferencesProps} from '@cloudscape-design/components';
 import Pagination from '@cloudscape-design/components/pagination';
 import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
 import TextFilter from '@cloudscape-design/components/text-filter';
+import { title } from 'process';
 
 const getFilterCounterText = (count: number = 0) => `${count} ${count === 1 ? 'match' : 'matches'}`;
 
@@ -80,6 +81,8 @@ const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string
 )}
 
 
+
+
 export default function VariationTable({ flavors }: VariationTableProps) {
   const [preferences, setPreferences] = useState<CollectionPreferencesProps['preferences']>({pageSize:20});
   const {items , filterProps, actions, filteredItemsCount, paginationProps, collectionProps} = useCollection<Flavor> (flavors, {
@@ -124,6 +127,27 @@ export default function VariationTable({ flavors }: VariationTableProps) {
           {...filterProps}
           filteringPlaceholder="Find flavors"
           countText={getFilterCounterText(filteredItemsCount)}
+        />
+      }
+      preferences={
+        <CollectionPreferences 
+          preferences={preferences}
+          pageSizePreference={{
+            title: 'select page size',
+            options:[
+              {value:10, label: '10 resources'},
+              {value:20, label: '20 resources'},
+              {value:50, label: '50 resources'},
+              {value:100, label: '100 resources'}
+            ],
+
+          }}
+
+          onConfirm={({detail}) => setPreferences(detail)}
+          title='preference'
+          confirmLabel='Confrim'
+          cancelLabel='Cancel'
+        
         />
       }
   />
