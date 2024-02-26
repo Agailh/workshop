@@ -118,7 +118,7 @@ export default function VariationTable({ flavors }: VariationTableProps) {
           Flavors
         </Header>
       }
-
+      pagination={<Pagination {...paginationProps} />}
       filter={
         <TextFilter
           {...filterProps}
