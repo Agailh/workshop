@@ -5,12 +5,12 @@ import Header  from '@cloudscape-design/components/header';
 import { Flavor } from '../data';
 import  Table,{ TableProps } from '@cloudscape-design/components/table';
 import { useCollection } from '@cloudscape-design/collection-hooks';
-import {  CollectionPreferences, CollectionPreferencesProps} from '@cloudscape-design/components';
+import {  CollectionPreferences, CollectionPreferencesProps, SpaceBetween} from '@cloudscape-design/components';
 import Pagination from '@cloudscape-design/components/pagination';
 import Box from '@cloudscape-design/components/box';
 import Button from '@cloudscape-design/components/button';
 import TextFilter from '@cloudscape-design/components/text-filter';
-import { title } from 'process';
+import  title  from 'process';
 
 const getFilterCounterText = (count: number = 0) => `${count} ${count === 1 ? 'match' : 'matches'}`;
 
@@ -80,6 +80,9 @@ const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string
 
 )}
 
+const getHeaderCounterText = (items: readonly Flavor[] = [], selectedItems: readonly Flavor[] = []) => {
+  return selectedItems && selectedItems.length > 0 ? `(${selectedItems.length}/${items.length})` : `(${items.length})`;
+};
 
 
 
@@ -117,7 +120,16 @@ export default function VariationTable({ flavors }: VariationTableProps) {
         tableLabel:'Flavors table',
       }}
       header={
-        <Header variant='awsui-h1-sticky' counter={`(${flavors.length})`}>
+        <Header 
+        variant='awsui-h1-sticky' 
+        counter={getHeaderCounterText(flavors, collectionProps.selectedItems)}
+        actions={
+          <SpaceBetween size='s' direction='horizontal'>
+            <Button disabled={collectionProps.selectedItems?.length === 0 }>Edit</Button>
+            <Button href='/new_flavor' variant='primary'>Create Flavor</Button>
+          </SpaceBetween>
+        }
+        >
           Flavors
         </Header>
       }
