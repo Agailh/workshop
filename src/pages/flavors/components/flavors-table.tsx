@@ -1,15 +1,35 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Header  from '@cloudscape-design/components/header';
 import { Flavor } from '../data';
 import  Table,{ TableProps } from '@cloudscape-design/components/table';
 import { useCollection } from '@cloudscape-design/collection-hooks';
-import { CollectionPreferencesProps, Pagination } from '@cloudscape-design/components';
+import {  CollectionPreferencesProps} from '@cloudscape-design/components';
+import Pagination from '@cloudscape-design/components/pagination';
+import Box from '@cloudscape-design/components/box';
+import Button from '@cloudscape-design/components/button';
+import TextFilter from '@cloudscape-design/components/text-filter';
+
+const getFilterCounterText = (count: number = 0) => `${count} ${count === 1 ? 'match' : 'matches'}`;
 
 export interface VariationTableProps {
   flavors: Flavor[];
 }
+
+const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string; action?: ReactNode}) => {
+  return (
+    <Box textAlign="center" color="inherit">
+      <Box variant="strong" textAlign="center" color="inherit">
+        {title}
+      </Box>
+      <Box variant="p" padding={{bottom: "s"}} color="inherit">
+        {subtitle}
+      </Box>
+      {action}
+    </Box>
+
+)}
 
 const columnDefinitions: TableProps<Flavor>['columnDefinitions'] = [
   {
@@ -61,7 +81,17 @@ const columnDefinitions: TableProps<Flavor>['columnDefinitions'] = [
 export default function VariationTable({ flavors }: VariationTableProps) {
   const [preferences, setPreferences] = useState<CollectionPreferencesProps['preferences']>({pageSize:20});
   const {items , filterProps, filteredItemsCount, paginationProps, collectionProps} = useCollection<Flavor> (flavors, {
-    filtering:{},
+    filtering:{
+      noMatch: (
+        <EmptyState 
+          title='No matching results'
+          subtitle="we can't find a match"
+          action={<Button onClick={() => actions.setFiltering('')}>Clear filter</Button>}
+
+        />
+      )
+    },
+    
     pagination:{ pageSize: preferences?.pageSize},
     sorting: {defaultState: {sortingColumn: columnDefinitions[0]}},
     selection: {},
