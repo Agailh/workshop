@@ -69,7 +69,7 @@ export default function VariationTable({ flavors }: VariationTableProps) {
   return <>
   <Table <Flavor>
     {...collectionProps}
-      items={flavors}
+      items={items}
       columnDefinitions={columnDefinitions}
       stickyHeader={true}
       resizableColumns={true}
