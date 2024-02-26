@@ -65,7 +65,7 @@ const columnDefinitions: TableProps<Flavor>['columnDefinitions'] = [
   
 ]
 
-const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string; action?: ReactNode}) => {
+const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string; action: ReactNode}) => {
   return (
     <Box textAlign="center" color="inherit">
       <Box variant="strong" textAlign="center" color="inherit">
