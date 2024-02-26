@@ -126,7 +126,7 @@ export default function VariationTable({ flavors }: VariationTableProps) {
         actions={
           <SpaceBetween size='s' direction='horizontal'>
             <Button disabled={collectionProps.selectedItems?.length === 0 }>Edit</Button>
-            <Button href='/new_flavor' variant='primary'>Create Flavor</Button>
+            <Button href='/Create-Flavors' variant='primary'>Create Flavor</Button>
           </SpaceBetween>
         }
         >

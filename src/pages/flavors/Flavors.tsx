@@ -10,7 +10,7 @@ import VariationsTable from './components/flavors-table';
 
 import { variationsData } from './data';
 
-export default function App() {
+export default function Flavors() {
   return (
     <ShellLayout
       contentType="table"

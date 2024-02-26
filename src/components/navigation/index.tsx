@@ -7,6 +7,7 @@ import SideNavigation, { SideNavigationProps } from '@cloudscape-design/componen
 const items: SideNavigationProps['items'] = [
   { type: 'link', text: 'Dashboard', href: '/Dashboard' },
   { type: 'link', text: 'Flavors', href: '/Flavors'  },
+  { type: 'link', text: 'Create Flavors', href: '/Create-Flavors'  },
 ];
 
 export default function Navigation() {

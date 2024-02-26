@@ -17,7 +17,7 @@ import QualityReport from './component/quality-report';
 
 import { variationData, breakdownItems, productionMetrics, quote, notes } from './data';
 
-export default function App() {
+export default function Home() {
   return (
     <Shell
       breadcrumbs={<Breadcrumbs active={{ text: 'Dashboard', href: '/home/index.html' }} />}
