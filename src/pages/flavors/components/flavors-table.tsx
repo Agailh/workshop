@@ -17,19 +17,7 @@ export interface VariationTableProps {
   flavors: Flavor[];
 }
 
-const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string; action?: ReactNode}) => {
-  return (
-    <Box textAlign="center" color="inherit">
-      <Box variant="strong" textAlign="center" color="inherit">
-        {title}
-      </Box>
-      <Box variant="p" padding={{bottom: "s"}} color="inherit">
-        {subtitle}
-      </Box>
-      {action}
-    </Box>
 
-)}
 
 const columnDefinitions: TableProps<Flavor>['columnDefinitions'] = [
   {
@@ -77,21 +65,34 @@ const columnDefinitions: TableProps<Flavor>['columnDefinitions'] = [
   
 ]
 
+const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string; action?: ReactNode}) => {
+  return (
+    <Box textAlign="center" color="inherit">
+      <Box variant="strong" textAlign="center" color="inherit">
+        {title}
+      </Box>
+      <Box variant="p" padding={{bottom: "s"}} color="inherit">
+        {subtitle}
+      </Box>
+      {action}
+    </Box>
+
+)}
+
 
 export default function VariationTable({ flavors }: VariationTableProps) {
   const [preferences, setPreferences] = useState<CollectionPreferencesProps['preferences']>({pageSize:20});
   const {items , filterProps, filteredItemsCount, paginationProps, collectionProps} = useCollection<Flavor> (flavors, {
-    filtering:{
+    filtering: {
       noMatch: (
-        <EmptyState 
-          title='No matching results'
-          subtitle="we can't find a match"
+        <EmptyState
+          title="No matches"
+          subtitle="We can’t find a match."
           action={<Button onClick={() => actions.setFiltering('')}>Clear filter</Button>}
-
         />
-      )
+      ),
     },
-    
+
     pagination:{ pageSize: preferences?.pageSize},
     sorting: {defaultState: {sortingColumn: columnDefinitions[0]}},
     selection: {},
@@ -118,7 +119,13 @@ export default function VariationTable({ flavors }: VariationTableProps) {
         </Header>
       }
 
-      pagination={<Pagination {...paginationProps} />}
+      filter={
+        <TextFilter
+          {...filterProps}
+          filteringPlaceholder="Find flavors"
+          countText={getFilterCounterText(filteredItemsCount)}
+        />
+      }
   />
   
   
