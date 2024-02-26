@@ -82,7 +82,7 @@ const EmptyState = ({ title, subtitle, action}: {title: string; subtitle: string
 
 export default function VariationTable({ flavors }: VariationTableProps) {
   const [preferences, setPreferences] = useState<CollectionPreferencesProps['preferences']>({pageSize:20});
-  const {items , filterProps, filteredItemsCount, paginationProps, collectionProps} = useCollection<Flavor> (flavors, {
+  const {items , filterProps, actions, filteredItemsCount, paginationProps, collectionProps} = useCollection<Flavor> (flavors, {
     filtering: {
       noMatch: (
         <EmptyState
